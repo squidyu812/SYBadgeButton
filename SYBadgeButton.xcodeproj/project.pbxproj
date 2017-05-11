@@ -12,6 +12,7 @@
 		399EAAF71EC41DD000B81041 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 399EAAF51EC41DD000B81041 /* Main.storyboard */; };
 		399EAAF91EC41DD000B81041 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 399EAAF81EC41DD000B81041 /* Assets.xcassets */; };
 		399EAAFC1EC41DD000B81041 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 399EAAFA1EC41DD000B81041 /* LaunchScreen.storyboard */; };
+		399EAB041EC4386000B81041 /* SYBadgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EAB031EC4386000B81041 /* SYBadgeButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		399EAAF81EC41DD000B81041 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		399EAAFB1EC41DD000B81041 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		399EAAFD1EC41DD000B81041 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		399EAB031EC4386000B81041 /* SYBadgeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SYBadgeButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				399EAAF11EC41DD000B81041 /* AppDelegate.swift */,
 				399EAAF31EC41DD000B81041 /* ViewController.swift */,
+				399EAB031EC4386000B81041 /* SYBadgeButton.swift */,
 				399EAAF51EC41DD000B81041 /* Main.storyboard */,
 				399EAAF81EC41DD000B81041 /* Assets.xcassets */,
 				399EAAFA1EC41DD000B81041 /* LaunchScreen.storyboard */,
@@ -137,6 +140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				399EAAF41EC41DD000B81041 /* ViewController.swift in Sources */,
+				399EAB041EC4386000B81041 /* SYBadgeButton.swift in Sources */,
 				399EAAF21EC41DD000B81041 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
