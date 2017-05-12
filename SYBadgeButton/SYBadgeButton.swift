@@ -8,7 +8,23 @@
 
 import UIKit
 
+enum SYBadgePosition: Int {
+    case topRight = 0
+    case topLeft = 1
+    case bottomRight = 2
+    case bottomLeft = 3
+    
+    case topCenter = 4
+    case bottomCenter = 5
+    case centerRight = 6
+    case centerLeft = 7
+    
+    case center = 8
+}
+
 @IBDesignable class SYBadgeButton: UIButton {
+    
+    // MARK: - @IBInspectable Properties
     
     @IBInspectable var badgeValue: String? = nil {
         didSet {
@@ -40,6 +56,21 @@ import UIKit
         }
     }
     
+    @IBInspectable var badgePositionIndex: Int {
+        get {
+            return badgePosition.rawValue
+        }
+        
+        set {
+            guard newValue != badgePositionIndex else { return }
+            if let position = SYBadgePosition(rawValue: newValue) {
+                self.badgePosition = position
+            } else {
+                self.badgePosition = .topRight
+            }
+        }
+    }
+    
     @IBInspectable var topEdgeInset: CGFloat = 2.0 {
         didSet {
             badgeLabel.topEdgeInset = topEdgeInset
@@ -64,6 +95,8 @@ import UIKit
         }
     }
     
+    // MARK: - Properties
+    
     fileprivate let badgeLabel: SYLabel = {
         let label = SYLabel()
         label.font = UIFont.systemFont(ofSize: 12)
@@ -77,6 +110,14 @@ import UIKit
     fileprivate var horizontalConstraint: NSLayoutConstraint? = nil
     fileprivate var verticalConstraint: NSLayoutConstraint? = nil
 
+    fileprivate var badgePosition: SYBadgePosition = .topRight {
+        didSet {
+            updateBadgeLabelConstraints()
+        }
+    }
+    
+    // MARK: - Initialization
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         configureBadgeLabel()
@@ -91,20 +132,10 @@ import UIKit
         updateBadgeLabelConstraints()
     }
     
+    // MARK: - Methods
+    
     fileprivate func configureBadgeLabel() {
         addSubview(badgeLabel)
-        let horizontalConstraint = NSLayoutConstraint(item: badgeLabel, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
-        let verticalConstraint = NSLayoutConstraint(item: badgeLabel, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 0)
-        addConstraint(horizontalConstraint)
-        addConstraint(verticalConstraint)
-
-        self.horizontalConstraint = horizontalConstraint
-        self.verticalConstraint = verticalConstraint
-//        let views: [String: Any] = ["badgeLabel": badgeLabel]
-//        let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:[badgeLabel]-0-|", options: [], metrics: nil, views: views)
-//        let verticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[badgeLabel]", options: [], metrics: nil, views: views)
-//        addConstraints(horizontalConstraints)
-//        addConstraints(verticalConstraints)
     }
     
     fileprivate func updateUserInterface() {
@@ -118,8 +149,61 @@ import UIKit
     }
     
     fileprivate func updateBadgeLabelConstraints() {
-        horizontalConstraint?.constant = badgeOffset.x
-        verticalConstraint?.constant = badgeOffset.y
+        
+        if let horizontalConstraint = horizontalConstraint, let verticalConstraint = verticalConstraint {
+            removeConstraint(horizontalConstraint)
+            removeConstraint(verticalConstraint)
+        }
+        
+        var hConstraint: NSLayoutConstraint
+        var vConstraint: NSLayoutConstraint
+        
+        switch badgePosition {
+        case .topRight:
+            hConstraint = NSLayoutConstraint(item: badgeLabel, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
+            vConstraint = NSLayoutConstraint(item: badgeLabel, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 0)
+            
+        case .topLeft:
+            hConstraint = NSLayoutConstraint(item: badgeLabel, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0)
+            vConstraint = NSLayoutConstraint(item: badgeLabel, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 0)
+            
+        case .bottomRight:
+            hConstraint = NSLayoutConstraint(item: badgeLabel, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
+            vConstraint = NSLayoutConstraint(item: badgeLabel, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 0)
+            
+        case .bottomLeft:
+            hConstraint = NSLayoutConstraint(item: badgeLabel, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0)
+            vConstraint = NSLayoutConstraint(item: badgeLabel, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 0)
+            
+        case .topCenter:
+            hConstraint = NSLayoutConstraint(item: badgeLabel, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0)
+            vConstraint = NSLayoutConstraint(item: badgeLabel, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 0)
+            
+        case .bottomCenter:
+            hConstraint = NSLayoutConstraint(item: badgeLabel, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0)
+            vConstraint = NSLayoutConstraint(item: badgeLabel, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 0)
+            
+        case .centerRight:
+            hConstraint = NSLayoutConstraint(item: badgeLabel, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
+            vConstraint = NSLayoutConstraint(item: badgeLabel, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0)
+            
+        case .centerLeft:
+            hConstraint = NSLayoutConstraint(item: badgeLabel, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0)
+            vConstraint = NSLayoutConstraint(item: badgeLabel, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0)
+            
+        case .center:
+            hConstraint = NSLayoutConstraint(item: badgeLabel, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0)
+            vConstraint = NSLayoutConstraint(item: badgeLabel, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0)
+        }
+        addConstraint(hConstraint)
+        addConstraint(vConstraint)
+        
+        self.horizontalConstraint = hConstraint
+        self.verticalConstraint = vConstraint
+        
+        
+        self.horizontalConstraint?.constant = badgeOffset.x
+        self.verticalConstraint?.constant = badgeOffset.y
     }
 }
 
