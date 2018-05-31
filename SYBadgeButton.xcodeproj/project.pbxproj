@@ -37,9 +37,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		396B025220BFDA6E00C09B40 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				399EAB031EC4386000B81041 /* SYBadgeButton.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		399EAAE51EC41DD000B81041 = {
 			isa = PBXGroup;
 			children = (
+				396B025220BFDA6E00C09B40 /* Classes */,
 				399EAAF01EC41DD000B81041 /* SYBadgeButton */,
 				399EAAEF1EC41DD000B81041 /* Products */,
 			);
@@ -58,7 +67,6 @@
 			children = (
 				399EAAF11EC41DD000B81041 /* AppDelegate.swift */,
 				399EAAF31EC41DD000B81041 /* ViewController.swift */,
-				399EAB031EC4386000B81041 /* SYBadgeButton.swift */,
 				399EAAF51EC41DD000B81041 /* Main.storyboard */,
 				399EAAF81EC41DD000B81041 /* Assets.xcassets */,
 				399EAAFA1EC41DD000B81041 /* LaunchScreen.storyboard */,
