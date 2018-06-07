@@ -30,35 +30,41 @@ open class SYBadgeButton: UIButton {
     @IBInspectable
     open var badgeValue: String? = nil {
         didSet {
-            updateUserInterface()
+            guard let badgeText = badgeValue, !badgeText.isEmpty else {
+                badgeLabel.isHidden = true
+                return
+            }
+            badgeLabel.isHidden = false
+            badgeLabel.text = badgeText
         }
     }
     
     @IBInspectable
     open var badgeTextColor: UIColor =  UIColor.white {
         didSet {
-            updateUserInterface()
+            badgeLabel.textColor = badgeTextColor
         }
     }
     
     @IBInspectable
     open var badgeBackgroundColor: UIColor = UIColor.red {
         didSet {
-            updateUserInterface()
+            badgeLabel.backgroundColor = badgeBackgroundColor
         }
     }
     
     @IBInspectable
     open var badgeOffset: CGPoint = CGPoint.zero {
         didSet {
-            updateBadgeLabelConstraints()
+            self.horizontalConstraint?.constant = badgeOffset.x
+            self.verticalConstraint?.constant = badgeOffset.y
         }
     }
     
     @IBInspectable
     open var badgeRadius: CGFloat = 8.0 {
         didSet {
-            updateUserInterface()
+            badgeLabel.layer.cornerRadius = badgeRadius
         }
     }
     
@@ -108,13 +114,18 @@ open class SYBadgeButton: UIButton {
     
     // MARK: - File Private Properties
     
-    fileprivate let badgeLabel: SYLabel = {
+    fileprivate lazy var badgeLabel: SYLabel = {
         let label = SYLabel()
         label.font = UIFont.systemFont(ofSize: 12)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.layer.zPosition = 1
         label.clipsToBounds = true
         label.textAlignment = .center
+        label.text = badgeValue
+        label.edgeInsets = UIEdgeInsets(top: topEdgeInset, left: leftEdgeInset, bottom: bottomEdgeInset, right: rightEdgeInset)
+        label.textColor = badgeTextColor
+        label.backgroundColor = badgeBackgroundColor
+        label.layer.cornerRadius = badgeRadius
         return label
     }()
     
@@ -132,14 +143,12 @@ open class SYBadgeButton: UIButton {
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         configureBadgeLabel()
-        updateUserInterface()
         updateBadgeLabelConstraints()
     }
     
     override public init(frame: CGRect) {
         super.init(frame: frame)
         configureBadgeLabel()
-        updateUserInterface()
         updateBadgeLabelConstraints()
     }
     
@@ -147,16 +156,6 @@ open class SYBadgeButton: UIButton {
     
     fileprivate func configureBadgeLabel() {
         addSubview(badgeLabel)
-    }
-    
-    fileprivate func updateUserInterface() {
-        guard badgeValue != nil else { return badgeLabel.isHidden = true }
-        badgeLabel.isHidden = false
-        badgeLabel.text = badgeValue
-        badgeLabel.edgeInsets = UIEdgeInsets(top: topEdgeInset, left: leftEdgeInset, bottom: bottomEdgeInset, right: rightEdgeInset)
-        badgeLabel.textColor = badgeTextColor
-        badgeLabel.backgroundColor = badgeBackgroundColor
-        badgeLabel.layer.cornerRadius = badgeRadius
     }
     
     fileprivate func updateBadgeLabelConstraints() {
@@ -212,18 +211,18 @@ open class SYBadgeButton: UIButton {
         self.horizontalConstraint = hConstraint
         self.verticalConstraint = vConstraint
         
-        
         self.horizontalConstraint?.constant = badgeOffset.x
         self.verticalConstraint?.constant = badgeOffset.y
     }
 }
 
-@IBDesignable class SYLabel: UILabel {
+@IBDesignable
+open class SYLabel: UILabel {
     
-    @IBInspectable var topEdgeInset: CGFloat = 0.0
-    @IBInspectable var leftEdgeInset: CGFloat = 0.0
-    @IBInspectable var bottomEdgeInset: CGFloat = 0.0
-    @IBInspectable var rightEdgeInset: CGFloat = 0.0
+    @IBInspectable open var topEdgeInset: CGFloat = 0.0
+    @IBInspectable open var leftEdgeInset: CGFloat = 0.0
+    @IBInspectable open var bottomEdgeInset: CGFloat = 0.0
+    @IBInspectable open var rightEdgeInset: CGFloat = 0.0
     
     var edgeInsets: UIEdgeInsets {
         get {
@@ -238,11 +237,11 @@ open class SYBadgeButton: UIButton {
         }
     }
     
-    override func drawText(in rect: CGRect) {
+    override open func drawText(in rect: CGRect) {
         super.drawText(in: UIEdgeInsetsInsetRect(rect, edgeInsets))
     }
     
-    override func sizeThatFits(_ size: CGSize) -> CGSize {
+    override open func sizeThatFits(_ size: CGSize) -> CGSize {
         let originSize = super.sizeThatFits(size)
         let width = originSize.width + leftEdgeInset + rightEdgeInset
         let height = originSize.height + topEdgeInset + bottomEdgeInset
@@ -251,7 +250,7 @@ open class SYBadgeButton: UIButton {
         return newSize
     }
     
-    override var intrinsicContentSize: CGSize {
+    override open var intrinsicContentSize: CGSize {
         let originSize = super.intrinsicContentSize
         let width = originSize.width + leftEdgeInset + rightEdgeInset
         let height = originSize.height + topEdgeInset + bottomEdgeInset
