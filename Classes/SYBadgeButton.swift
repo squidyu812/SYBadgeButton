@@ -122,6 +122,7 @@ open class SYBadgeButton: UIButton {
         label.clipsToBounds = true
         label.textAlignment = .center
         label.text = badgeValue
+        label.isHidden = badgeValue == nil ? true : false
         label.edgeInsets = UIEdgeInsets(top: topEdgeInset, left: leftEdgeInset, bottom: bottomEdgeInset, right: rightEdgeInset)
         label.textColor = badgeTextColor
         label.backgroundColor = badgeBackgroundColor
