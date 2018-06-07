@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		397ECA7020C8DD9200285161 /* SYBadgeButton.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 397ECA6F20C8DD9200285161 /* SYBadgeButton.podspec */; };
 		399EAAF21EC41DD000B81041 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EAAF11EC41DD000B81041 /* AppDelegate.swift */; };
 		399EAAF41EC41DD000B81041 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399EAAF31EC41DD000B81041 /* ViewController.swift */; };
 		399EAAF71EC41DD000B81041 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 399EAAF51EC41DD000B81041 /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		397ECA6F20C8DD9200285161 /* SYBadgeButton.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SYBadgeButton.podspec; sourceTree = SOURCE_ROOT; };
 		399EAAEE1EC41DD000B81041 /* SYBadgeButton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SYBadgeButton.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		399EAAF11EC41DD000B81041 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		399EAAF31EC41DD000B81041 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 				399EAAF81EC41DD000B81041 /* Assets.xcassets */,
 				399EAAFA1EC41DD000B81041 /* LaunchScreen.storyboard */,
 				399EAAFD1EC41DD000B81041 /* Info.plist */,
+				397ECA6F20C8DD9200285161 /* SYBadgeButton.podspec */,
 			);
 			path = SYBadgeButton;
 			sourceTree = "<group>";
@@ -135,6 +138,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				397ECA7020C8DD9200285161 /* SYBadgeButton.podspec in Resources */,
 				399EAAFC1EC41DD000B81041 /* LaunchScreen.storyboard in Resources */,
 				399EAAF91EC41DD000B81041 /* Assets.xcassets in Resources */,
 				399EAAF71EC41DD000B81041 /* Main.storyboard in Resources */,

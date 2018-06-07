@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum SYBadgePosition: Int {
+public enum SYBadgePosition: Int {
     case topRight = 0
     case topLeft = 1
     case bottomRight = 2
@@ -22,41 +22,48 @@ enum SYBadgePosition: Int {
     case center = 8
 }
 
-@IBDesignable class SYBadgeButton: UIButton {
+@IBDesignable
+open class SYBadgeButton: UIButton {
     
     // MARK: - @IBInspectable Properties
     
-    @IBInspectable var badgeValue: String? = nil {
+    @IBInspectable
+    open var badgeValue: String? = nil {
         didSet {
             updateUserInterface()
         }
     }
     
-    @IBInspectable var badgeTextColor: UIColor =  UIColor.white {
+    @IBInspectable
+    open var badgeTextColor: UIColor =  UIColor.white {
         didSet {
             updateUserInterface()
         }
     }
     
-    @IBInspectable var badgeBackgroundColor: UIColor = UIColor.red {
+    @IBInspectable
+    open var badgeBackgroundColor: UIColor = UIColor.red {
         didSet {
             updateUserInterface()
         }
     }
     
-    @IBInspectable var badgeOffset: CGPoint = CGPoint.zero {
+    @IBInspectable
+    open var badgeOffset: CGPoint = CGPoint.zero {
         didSet {
             updateBadgeLabelConstraints()
         }
     }
     
-    @IBInspectable var badgeRadius: CGFloat = 8.0 {
+    @IBInspectable
+    open var badgeRadius: CGFloat = 8.0 {
         didSet {
             updateUserInterface()
         }
     }
     
-    @IBInspectable var badgePositionIndex: Int {
+    @IBInspectable
+    open var badgePositionIndex: Int {
         get {
             return badgePosition.rawValue
         }
@@ -71,31 +78,35 @@ enum SYBadgePosition: Int {
         }
     }
     
-    @IBInspectable var topEdgeInset: CGFloat = 2.0 {
+    @IBInspectable
+    open var topEdgeInset: CGFloat = 2.0 {
         didSet {
             badgeLabel.topEdgeInset = topEdgeInset
         }
     }
     
-    @IBInspectable var leftEdgeInset: CGFloat = 5.0 {
+    @IBInspectable
+    open var leftEdgeInset: CGFloat = 5.0 {
         didSet {
             badgeLabel.leftEdgeInset = leftEdgeInset
         }
     }
     
-    @IBInspectable var bottomEdgeInset: CGFloat = 2.0 {
+    @IBInspectable
+    open var bottomEdgeInset: CGFloat = 2.0 {
         didSet {
             badgeLabel.bottomEdgeInset = bottomEdgeInset
         }
     }
     
-    @IBInspectable var rightEdgeInset: CGFloat = 5.0 {
+    @IBInspectable
+    open var rightEdgeInset: CGFloat = 5.0 {
         didSet {
             badgeLabel.rightEdgeInset = rightEdgeInset
         }
     }
     
-    // MARK: - Properties
+    // MARK: - File Private Properties
     
     fileprivate let badgeLabel: SYLabel = {
         let label = SYLabel()
@@ -118,14 +129,14 @@ enum SYBadgePosition: Int {
     
     // MARK: - Initialization
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         configureBadgeLabel()
         updateUserInterface()
         updateBadgeLabelConstraints()
     }
     
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         configureBadgeLabel()
         updateUserInterface()
