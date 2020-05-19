@@ -62,7 +62,7 @@ open class SYBadgeButton: UIButton {
     }
     
     @IBInspectable
-    open var badgeRadius: CGFloat = 8.0 {
+    open var badgeRadius: CGFloat = 9.25 {
         didSet {
             badgeLabel.layer.cornerRadius = badgeRadius
         }
@@ -112,11 +112,25 @@ open class SYBadgeButton: UIButton {
         }
     }
     
+    // MARK: - Properties
+    
+    open var badgeFont: UIFont = UIFont.systemFont(ofSize: 12) {
+        didSet {
+            badgeLabel.font = badgeFont
+        }
+    }
+    
+    // MARK: Getter Properties
+    
+    open var badgeHeight: CGFloat {
+        return badgeLabel.frame.height
+    }
+    
     // MARK: - File Private Properties
     
     fileprivate lazy var badgeLabel: SYLabel = {
         let label = SYLabel()
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = badgeFont
         label.translatesAutoresizingMaskIntoConstraints = false
         label.layer.zPosition = 1
         label.clipsToBounds = true

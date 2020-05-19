@@ -32,6 +32,7 @@ class ViewController: UIViewController {
         badgeButton.rightEdgeInset = 10
         badgeButton.topEdgeInset = 5
         badgeButton.bottomEdgeInset = 5
+        badgeButton.badgeFont = UIFont(name: "AmericanTypewriter-CondensedBold", size: 30) ?? UIFont.systemFont(ofSize: UIFont.systemFontSize)
     }
 }
 
