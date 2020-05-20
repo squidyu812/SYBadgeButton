@@ -253,7 +253,7 @@ open class SYLabel: UILabel {
     }
     
     override open func drawText(in rect: CGRect) {
-        super.drawText(in: UIEdgeInsetsInsetRect(rect, edgeInsets))
+        super.drawText(in: rect.inset(by: edgeInsets))
     }
     
     override open func sizeThatFits(_ size: CGSize) -> CGSize {
