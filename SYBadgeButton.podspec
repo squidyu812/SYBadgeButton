@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "SYBadgeButton"
-  s.version      = "1.0.4"
+  s.version      = "1.1.0"
   s.summary      = "iOS badge button written in Swift."
 
   # This description is used to generate tags and improve search results.
@@ -71,7 +71,7 @@ Pod::Spec.new do |s|
   # s.watchos.deployment_target = "2.0"
   # s.tvos.deployment_target = "9.0"
 
-  s.swift_version = "4.0"
+  s.swift_version = "5.0"
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
